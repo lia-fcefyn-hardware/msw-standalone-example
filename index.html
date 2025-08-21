@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Demo MSW</title>
+  </head>
+  <body>
+    <h1>Demo con MSW</h1>
+    <button id="fetchBtn">Consultar /api/user</button>
+    <pre id="output"></pre>
+
+    <!-- carga de msw -->
+    <script src="mockServiceWorker.js"></script>
+    <script src="https://unpkg.com/msw/lib/iife/index.js"></script>
+    <script src="browser.js"></script>
+    <script>
+
+      // Evento para probar fetch
+      document
+        .getElementById("fetchBtn")
+        .addEventListener("click", async () => {
+          const res = await fetch("/rand");
+          const data = await res.json();
+          document.getElementById("output").textContent = JSON.stringify(
+            data,
+            null,
+            2
+          );
+        });
+    </script>
+  </body>
+</html>
